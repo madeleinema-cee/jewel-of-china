@@ -1,8 +1,17 @@
 body {
-    background: #EEE2DC;
+    background:
+    radial-gradient(#EDC7B7 3px, transparent 4px),
+    radial-gradient(#EDC7B7 3px, transparent 4px),
+    linear-gradient(#EEE2DC 4px, transparent 0),
+    linear-gradient(45deg, transparent 74px, transparent 75px, #BAB2B5 75px, #BAB2B5 76px, transparent 77px, transparent 109px),
+    linear-gradient(-45deg, transparent 75px, transparent 76px, #BAB2B5 76px, #BAB2B5 77px, transparent 78px, transparent 109px),
+    #EEE2DC;
+    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     color: #123C69;
     margin: 50px;
     padding-top: 70px;
+
 }
 h1 {
     color: #123C69;
@@ -46,8 +55,21 @@ h1 {
 }
 
 .form-section{
-    background-color: #EEE2DC;
-    padding: 10px 20px;
-    border: #AC3B61 dot-dash 3px;
+    background-color: #eee2dc;
+    border: #BAB2B5 solid 1px;
     border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
 }
