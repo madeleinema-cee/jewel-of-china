@@ -1,21 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-    <p class="lead">Don’t do what I did. After I earned my Ph.D., I pieced together adjunct work,
-    tried to publish, and hoped for an improvement that never materialized in the tenure-track market.
-    I thought a Ph.D. would bring me "the life of the mind" — instead, it left me with debt, depression, no health insurance,
-    and uncertain employment prospects. Like so many Ph.D.s, I was ill-equipped to make a career transition out of academe.
-    Was I even good at anything else? Eventually I transformed that predicament into a career.
-    Today I run Beyond the Professoriate, an organization I founded in 2017 to provide professional
-    development and career education for Ph.D.s.
-    </p>
-    <h3><div class="post-section">POSTS</div></h3>
+    <h3><div class="post-section">{{ user.username }}'s Posts ({{posts.total}})</div></h3>
     {% for post in posts.items %}
         <article class="media form-section">
             <img class="rounded-circle article-img" src="{{url_for('static',
              filename='profile_pics/' + post.author.image_file)}}">
           <div class="media-body">
             <div class="article-metadata">
-                <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
+                <a class="article-author" href="#">{{ post.author.username }}</a>
                 <small class="text-muted">{{ post.date_posted.strftime('%x, %X')}}</small>
             </div>
             <h2><a class="article-title" href="{{url_for('post', post_id=post.id)}}">{{ post.title }}</a></h2>
