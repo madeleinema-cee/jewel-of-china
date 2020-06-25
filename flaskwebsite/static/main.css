@@ -1,64 +1,73 @@
+:root {
+    --bgcolor: #FCEFE8;
+    --primary: #ED5736;
+    --secendory: #426666;
+    --third: #F9906F;
+    --chinese: "Ma Shan Zheng";
+    --english: "Rubik";
+    --title: "Sulphur Point"
+}
+
 body {
-    background:
-    radial-gradient(#EDC7B7 3px, transparent 4px),
-    radial-gradient(#EDC7B7 3px, transparent 4px),
-    linear-gradient(#EEE2DC 4px, transparent 0),
-    linear-gradient(45deg, transparent 74px, transparent 75px, #BAB2B5 75px, #BAB2B5 76px, transparent 77px, transparent 109px),
-    linear-gradient(-45deg, transparent 75px, transparent 76px, #BAB2B5 76px, #BAB2B5 77px, transparent 78px, transparent 109px),
-    #EEE2DC;
-    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
-    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-    color: #123C69;
+    background-color: var(--bgcolor);
+    background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");
+    color: var(--secendory);
     margin: 50px;
     padding-top: 70px;
-    font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif
-
-}
-h1 {
-    color: #123C69;
+    font-family: var(--english), sans-serif
 }
 
+.chinese-text{
+    font-family: var(--chinese), sans-serif;
+    font-size: x-large;
+}
+
+.page-header {
+    color: var(--bgcolor);
+    font-family: var(--title), sans-serif;
+}
 
 .bg-color1{
-    background-color:#EDC7B7;
+    background-color:var(--third);
+    opacity: 90%;
 }
 
 .color1{
-    color:#AC3B61;
+    color:var(--primary);
 }
 
 .color2 {
-    color: #123C69;
+    color: var(--secendory);
 }
 
 .site-header .navbar-nav .nav-link {
-    color: #AC3B61;
+    color: var(--primary);
     padding: 25px;
 }
 
 a:hover {
-    color: #123C69;
+    color: var(--secendory);
 }
 
 .btn-section{
-    color: #AC3B61;
-    border: 1px solid #AC3B61;
+    color: var(--primary);
+    border: 1px solid var(--primary);
     border-radius: 10px;
 }
 .btn-section:hover{
-    color: #EEE2DC;
-    background-color: #AC3B61;
+    color: var(--bgcolor);
+    background-color: var(--primary);
 }
 
 .btn-section.active{
-    color: #EEE2DC;
-    background-color: #AC3B61;
-    border: 1px solid #AC3B61;
+    color: var(--bgcolor);
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     border-radius: 10px
 }
 
 .site-header .navbar-nav .nav-link:hover {
-    color: #EEE2DC;
+    color: var(--bgcolor);
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -71,7 +80,7 @@ a:hover {
 }
 
 .form-section{
-    background-color: #eee2dc;
+    background-color: var(--bgcolor);
     border: #BAB2B5 solid 1px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -94,18 +103,19 @@ a:hover {
     margin-top: 30px;
     margin-bottom: 30px;
     font-size: larger;
-    color: #AC3B61;
+    color: var(--primary);
+    font-family: var(--title), sans-serif;
 }
 
 .article-author {
-    color: #123C69;
+    color: var(--secendory);
     margin-left: 20px;
     margin-right: 30px;
     padding-bottom: 50px;
 }
 
 .article-author:hover{
-    color: #AC3B61;
+    color: var(--primary);
 }
 .article-metadata{
     padding-bottom: 10px;
@@ -113,12 +123,12 @@ a:hover {
 
 .article-title {
     padding: 20px;
-    color: #AC3B61;
+    color: var(--primary);
     margin-top: 20px;
 }
 
 .article-title:hover {
-    color: #123C69;
+    color: var(--secendory);
 }
 
 .article-content {
