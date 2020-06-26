@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="post-section">POSTS</div>
+    <h3 class="post-section">POSTS</h3>
     <article class="media form-section">
         <img class="rounded-circle article-img" src="{{url_for('static',
          filename='profile_pics/' + post.author.image_file)}}">
@@ -8,23 +8,22 @@
         <div class="article-metadata">
             <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
             <small class="text-muted">{{ post.date_posted.strftime('%x, %X')}}</small>
-        </div>
+
           {% if post.author == current_user %}
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1 ml-3" href="{{url_for('update_post', post_id=post.id)}}">Update</a>
-            <button type="button" class="btn btn-danger btn-sm"
-                    data-toggle="modal" data-target="#deleteModal">Delete</button>
-            </div>
+                <a class="edit-icon" href="{{url_for('update_post', post_id=post.id)}}"><i class='far fa-edit' style='font-size:21px'></i></a>
+                <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:24px"></i></a>
           {% endif %}
-        <h2><a class="article-title">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
+            <h3><a class="article-title">{{ post.title }}</a></h3>
+            <p class="chinese">{{ post.chinese_content }}</p>
+            <p class="article-content">{{ post.content }}</p>
+      </div>
       </div>
     </article>
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="deletepost" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Delete Post</h5>
+            <h5 class="modal-title" id="deletepost">Delete Post</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

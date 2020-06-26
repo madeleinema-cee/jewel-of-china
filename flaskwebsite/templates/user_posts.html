@@ -10,7 +10,8 @@
                 <a class="article-author" href="#">{{ post.author.username }}</a>
                 <small class="text-muted">{{ post.date_posted.strftime('%x, %X')}}</small>
             </div>
-            <h2><a class="article-title" href="{{url_for('post', post_id=post.id)}}">{{ post.title }}</a></h2>
+            <h3><a class="article-title" href="{{url_for('post', post_id=post.id)}}">{{ post.title }}</a></h3>
+              <p class="chinese">{{ post.chinese_content }}</p>
             <p class="article-content">{{ post.content }}</p>
           </div>
         </article>

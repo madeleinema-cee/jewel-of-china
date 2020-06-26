@@ -68,7 +68,7 @@ def save_picture(form_picture):
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
 
-    output_size = (125, 125)
+    output_size = (12.5, 12.5)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
@@ -101,7 +101,7 @@ def account():
 def create_post():
     form= PostForm()
     if form.validate_on_submit():
-        post = Post(author=current_user, title=form.title.data, content=form.content.data)
+        post = Post(author=current_user, title=form.title.data, chinese_content=form.chinese_content.data, content=form.content.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -124,12 +124,14 @@ def update_post(post_id):
     form = PostForm()
     if form.validate_on_submit():
         post.title = form.title.data
+        post.chinese_content = form.chinese_content.data
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
+        form.chinese_content.data = post.chinese_content
         form.content.data = post.content
     return render_template('create_post.html', title='Update Post', form=form, legend="Update Post")
 

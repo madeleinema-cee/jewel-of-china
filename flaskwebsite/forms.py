@@ -58,6 +58,7 @@ class UpdateAccountForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[data_required()])
+    chinese_content = TextAreaField('Chinese Text', validators=[data_required()])
     content = TextAreaField('Content', validators=[data_required()])
     submit = SubmitField('Post')
 

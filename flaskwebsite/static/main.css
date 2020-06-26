@@ -1,77 +1,101 @@
+:root {
+    --bgcolor: #FCEFE8;
+    --primary: #ED5736;
+    --secendory: #7397ab;
+    --third: #F9906F;
+    --chinese: "Ma Shan Zheng";
+    --english: "Rubik";
+    --title: "Sulphur Point"
+}
+
 body {
-    background:
-    radial-gradient(#EDC7B7 3px, transparent 4px),
-    radial-gradient(#EDC7B7 3px, transparent 4px),
-    linear-gradient(#EEE2DC 4px, transparent 0),
-    linear-gradient(45deg, transparent 74px, transparent 75px, #BAB2B5 75px, #BAB2B5 76px, transparent 77px, transparent 109px),
-    linear-gradient(-45deg, transparent 75px, transparent 76px, #BAB2B5 76px, #BAB2B5 77px, transparent 78px, transparent 109px),
-    #EEE2DC;
-    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
-    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-    color: #123C69;
-    margin: 50px;
-    padding-top: 70px;
-    font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif
-
-}
-h1 {
-    color: #123C69;
+    background-color: var(--bgcolor);
+    background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");
+    color: var(--secendory);
+    margin: 20px;
+    font-family: var(--english), sans-serif
 }
 
-
-.bg-color1{
-    background-color:#EDC7B7;
+.chinese-text{
+    font-family: var(--chinese), sans-serif;
+    font-size: x-large;
 }
 
-.color1{
-    color:#AC3B61;
-}
-
-.color2 {
-    color: #123C69;
-}
-
-.site-header .navbar-nav .nav-link {
-    color: #AC3B61;
+.page-header {
+    color: var(--primary);
+    font-family: var(--title), sans-serif;
     padding: 25px;
 }
 
+
+.color1{
+    color:var(--primary);
+}
+
+.color2 {
+    color: var(--secendory);
+}
+
+.sidenav {
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: -20px;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--secendory);
+  display: block;
+    opacity: 50%;
+}
+
+.sidenav a:hover {
+  color: var(--secendory);
+    opacity: 90%;
+}
+
+
 a:hover {
-    color: #123C69;
+    color: var(--secendory);
+}
+
+.home-section {
+    padding: 20px;
 }
 
 .btn-section{
-    color: #AC3B61;
-    border: 1px solid #AC3B61;
+    color: var(--primary);
+    border: 1px solid var(--primary);
     border-radius: 10px;
 }
 .btn-section:hover{
-    color: #EEE2DC;
-    background-color: #AC3B61;
+    color: var(--bgcolor);
+    background-color: var(--primary);
 }
 
 .btn-section.active{
-    color: #EEE2DC;
-    background-color: #AC3B61;
-    border: 1px solid #AC3B61;
+    color: var(--bgcolor);
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     border-radius: 10px
 }
 
-.site-header .navbar-nav .nav-link:hover {
-    color: #EEE2DC;
+
+img{
+    max-width: 100%;
+    height: auto;
 }
 
-.site-header .navbar-nav .nav-link.active {
-    font-weight: 900;
-}
-
-.sizing{
-    padding:300px;
-    margin: 20px;
-}
 
 .form-section{
-    background-color: #eee2dc;
+    background-color: var(--bgcolor);
     border: #BAB2B5 solid 1px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -94,40 +118,47 @@ a:hover {
     margin-top: 30px;
     margin-bottom: 30px;
     font-size: larger;
-    color: #AC3B61;
+    color: var(--primary);
+    font-family: var(--title), sans-serif;
 }
 
 .article-author {
-    color: #123C69;
+    color: var(--secendory);
     margin-left: 20px;
     margin-right: 30px;
     padding-bottom: 50px;
 }
 
 .article-author:hover{
-    color: #AC3B61;
+    color: var(--primary);
 }
 .article-metadata{
     padding-bottom: 10px;
 }
 
 .article-title {
-    padding: 20px;
-    color: #AC3B61;
-    margin-top: 20px;
+    padding: 10px;
+    color: var(--primary);
 }
 
 .article-title:hover {
-    color: #123C69;
+    color: var(--secendory);
+}
+
+.chinese {
+    font-family: var(--chinese);
+    font-size: x-large;
+    padding: 10px;
 }
 
 .article-content {
-    padding: 20px;
+    padding: 10px;
+    font-family: var(--english);
 }
 
 .article-img {
-    height: 100px;
-    width: 100px;
-    margin-right: 20px;
-    margin-bottom: 16px;
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    margin-bottom: 1px;
 }
