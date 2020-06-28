@@ -1,19 +1,23 @@
 :root {
     --bgcolor: #FCEFE8;
-    --primary: #ED5736;
-    --secendory: #7397ab;
-    --third: #F9906F;
+    --primary: #c93756;
+    --secendory: #003371;
+    --third: #9d2933;
     --chinese: "Ma Shan Zheng";
     --english: "Rubik";
-    --title: "Sulphur Point"
+    --title: "La Belle Aurore";
+    --sub-title: "Noto Sans";
 }
 
 body {
     background-color: var(--bgcolor);
     background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");
     color: var(--secendory);
-    margin: 20px;
     font-family: var(--english), sans-serif
+}
+
+header {
+    padding: 20px;
 }
 
 .chinese-text{
@@ -21,12 +25,41 @@ body {
     font-size: x-large;
 }
 
-.page-header {
-    color: var(--primary);
-    font-family: var(--title), sans-serif;
-    padding: 25px;
+.site-header {
+    background-image: url("../../static/Qiao Zhongchang.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 20px;
 }
 
+.image {
+    height: 100PX;
+    width: 100PX;
+    padding: 5px;
+}
+
+@media screen and (min-width: 701px) {
+    div.page-header {
+        color: var(--third);
+        font-family: var(--title), sans-serif;
+        padding: 15px 10px;
+        display: inline;
+        font-size: 40px;
+        font-weight: bolder;
+    }
+}
+@media screen and (max-width: 700px) {
+    div.page-header {
+        color: var(--third);
+        font-family: var(--title), sans-serif;
+        padding: 15px 10px;
+        display: inline;
+        font-size: 30px;
+    }
+}
 
 .color1{
     color:var(--primary);
@@ -67,7 +100,7 @@ a:hover {
 }
 
 .home-section {
-    padding: 20px;
+    margin-top: 30px;
 }
 
 .btn-section{
@@ -100,7 +133,8 @@ img{
     border-radius: 5px;
     margin-bottom: 20px;
     margin-top: 20px;
-    padding: 15px;
+    padding: 20px;
+    width: 70%;
 }
 
 .account-img {
@@ -119,7 +153,7 @@ img{
     margin-bottom: 30px;
     font-size: larger;
     color: var(--primary);
-    font-family: var(--title), sans-serif;
+    font-family: var(--sub-title), sans-serif;
 }
 
 .article-author {

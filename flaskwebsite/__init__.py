@@ -19,4 +19,5 @@ app.config['MAIL_USERNAME'] = 'email'
 app.config['MAIL_PASSWORD'] = 'password'
 mail = Mail(app)
 
+
 from flaskwebsite import routes

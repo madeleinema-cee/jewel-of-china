@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="form-section">
+    <header>
+          <img class="image" src="static\logo.png" alt="logo">
+          <div class="page-header" href="/">The Forest of Translations</div>
+      </header>
+<div class="container form-section">
     <div class="media">
-        <img class="rounded-circle account-img" src="{{ image_file }}">
+        <img class="rounded-circle account-img" src="{{ image_file }}" alt="profile">
         <div class="media-body">
             <h2 class="account-heading">{{ current_user.username }}</h2>
             <p class="text-secondary">{{ current_user.email }}</p>
         </div>
     </div>
-    <form method="post", action="" enctype="multipart/form-data">
+    <form method="post" action="" enctype="multipart/form-data">
     {{form.hidden_tag()}}
         <fieldset class="form-group">
             <legend class="border-bottom-mb-2 color1">Account Information</legend>

@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="form-section">
+    <header>
+          <img class="image" src="static\logo.png" alt="logo">
+          <div class="page-header" href="/">The Forest of Translations</div>
+      </header>
+    <div class="container form-section">
         <form method="post" action="">
             {{form.hidden_tag()}}
             <legend class="border-bottom-mb-2">Reset Password</legend>

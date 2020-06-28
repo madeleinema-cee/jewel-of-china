@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h3 class="post-section">POSTS</h3>
+    <header>
+          <img class="image" src="static\logo.png" alt="logo">
+          <div class="page-header" href="/">The Forest of Translations</div>
+      </header>
+    <h3 class="container post-section">POSTS</h3>
     <article class="media form-section">
         <img class="rounded-circle article-img" src="{{url_for('static',
          filename='profile_pics/' + post.author.image_file)}}">
