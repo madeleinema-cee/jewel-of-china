@@ -11,14 +11,10 @@
 
 body {
     background-color: var(--bgcolor);
-    background-image: url("https://www.transparenttextures.com/patterns/groovepaper.png");
-    color: var(--secendory);
+    background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");    color: var(--secendory);
     font-family: var(--english), sans-serif
 }
 
-header {
-    padding: 20px;
-}
 
 .chinese-text{
     font-family: var(--chinese), sans-serif;
@@ -27,12 +23,29 @@ header {
 
 .site-header {
     background-image: url("../../static/Qiao Zhongchang.jpg");
-    height: 100vh;
+    height: 300px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
-    padding: 20px;
+    position: absolute;
+    top:0;
+    width: 100%;
+}
+
+.home-section {
+    position: absolute;
+    top: 300px;
+    margin-left: 80px;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.message {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    width: 30%;
 }
 
 .image {
@@ -86,7 +99,7 @@ header {
   font-size: 25px;
   color: var(--secendory);
   display: block;
-    opacity: 50%;
+    opacity: 40%;
 }
 
 .sidenav a:hover {
@@ -94,14 +107,17 @@ header {
     opacity: 90%;
 }
 
+.about {
+    position: fixed;
+    bottom: 0;
+    right: 25px;
+}
 
 a:hover {
     color: var(--secendory);
 }
 
-.home-section {
-    margin-top: 30px;
-}
+
 
 .btn-section{
     color: var(--primary);
@@ -113,6 +129,9 @@ a:hover {
     background-color: var(--primary);
 }
 
+.btn-danger {
+    border-radius: 10px;
+}
 .btn-section.active{
     color: var(--bgcolor);
     background-color: var(--primary);
@@ -135,7 +154,25 @@ img{
     margin-top: 20px;
     padding: 20px;
     width: 70%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
+
+@media screen and (min-width: 701px) {
+    div.account {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    div.account {
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
 
 .account-img {
   height: 125px;
@@ -145,7 +182,7 @@ img{
 }
 
 .account-heading {
-  font-size: 2.5rem;
+  font-size: 30px;
 }
 
 .post-section {
@@ -155,6 +192,12 @@ img{
     color: var(--primary);
     font-family: var(--sub-title), sans-serif;
 }
+
+
+.post {
+    margin: 10px;
+}
+
 
 .article-author {
     color: var(--secendory);
@@ -171,22 +214,29 @@ img{
 }
 
 .article-title {
-    padding: 10px;
+    padding: 5px;
     color: var(--primary);
+    font-size: x-large;
 }
 
 .article-title:hover {
     color: var(--secendory);
 }
 
+.edit-icon {
+    color: var(--primary);
+    float: right;
+    padding: 5px;
+}
+
 .chinese {
     font-family: var(--chinese);
-    font-size: x-large;
-    padding: 10px;
+    font-size: large;
+    padding: 5px;
 }
 
 .article-content {
-    padding: 10px;
+    padding: 5px;
     font-family: var(--english);
 }
 
@@ -195,4 +245,56 @@ img{
     width: 30px;
     margin-right: 5px;
     margin-bottom: 1px;
+}
+
+
+.modal-content {
+    background-color: var(--bgcolor);
+    color: var(--secendory);
+}
+
+.title {
+    font-family: var(--title);
+    font-size: x-large;
+    font-weight: bolder;
+    margin: auto;
+    padding-right:20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.center {
+    margin: auto;
+    width: 30%;
+    height: 30%;
+}
+
+.modal-body {
+    margin: auto;
+    width: 80%;
+    font-family: var(--english);
+    padding: 20px;
+    color: var(--third);
+    text-align: center;
+    font-size: large;
+}
+
+.copy-link {
+    color: var(--secendory)
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    color: var(--primary);
+}
+
+.icon {
+    padding: 10px;
+    color: var(--secendory)
+}
+
+.icon:hover {
+    color: var(--primary);
 }

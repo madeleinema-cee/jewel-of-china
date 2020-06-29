@@ -1,10 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-    <header>
-          <img class="image" src="static\logo.png" alt="logo">
-          <div class="page-header" href="/">The Forest of Translations</div>
-      </header>
-    <div class="container form-section">
+
+    <div class="container form-section account">
         <form method="post" action="">
             {{form.hidden_tag()}}
             <div class="form-group">
@@ -45,10 +42,9 @@
             </small>
         </form>
     </div>
-    <div class="container">
+    <div class="container account">
         <small class="text-muted">
             Do you need an account? <a class="color1" href="{{url_for('register')}}" >Sign Up</a>
         </small>
     </div>
-
 {% endblock content %}
