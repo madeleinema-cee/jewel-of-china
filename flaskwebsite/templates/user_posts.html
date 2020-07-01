@@ -6,15 +6,23 @@
             <article class="media form-section">
                 <img class="rounded-circle article-img" src="{{url_for('static',
                  filename='profile_pics/' + post.author.image_file)}}">
-              <div class="media-body">
-                <div class="article-metadata">
-                    <a class="article-author" href="#">{{ post.author.username }}</a>
-                    <small class="text-muted">{{ post.date_posted.strftime('%x, %X')}}</small>
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="article-author" href="#">{{ post.author.username }}</a>
+                        <small class="text-muted">{{ post.date_posted.strftime('%b %d, %Y %X')}}</small>
+                    </div>
+                        <a class="article-title" href="{{url_for('post', post_id=post.post_id)}}">{{ post.title }}</a>
+                        <p class="chinese">{{ post.chinese_content }}</p>
+                        <p class="article-content">{{ post.content }}</p>
+                    <hr>
+                    <div class="row">
+                        <a href="#" class="col-sm-1 tag">
+                            {% for tag in post.tags %}
+                                {{ tag.name }}
+                            {% endfor %}
+                        </a>
+                    </div>
                 </div>
-                <a class="article-title" href="{{url_for('post', post_id=post.id)}}">{{ post.title }}</a>
-                  <p class="chinese">{{ post.chinese_content }}</p>
-                <p class="article-content">{{ post.content }}</p>
-              </div>
             </article>
         {% endfor %}
         {% for page_num in posts.iter_pages() %}

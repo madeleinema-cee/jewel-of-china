@@ -14,6 +14,9 @@
       <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
 
 
     {% if title %}
@@ -25,47 +28,67 @@
   <body>
         <nav class="navbar">
             <div class="nav-brand">
-                <img class="image" src="static\logo.png" alt="logo">
+                <img class="image" src="/static/logo.png" alt="logo">
                 <div class="page-header" href="/">The Forest of Translations</div>
             </div>
         </nav>
+        <div role="alert" class="container message fixed-top">
+            {% with messages = get_flashed_messages(with_categories=true)%}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
         {% block content %}{% endblock %}
 
       <div class="sidenav">
           <a id="home" href="{{url_for('home')}}"><i class="fa fa-home" style="font-size:24px"></i></a>
             {% if current_user.is_authenticated %}
-            <a class="nav-item nav-link" id="post" href="{{url_for('create_post')}}"><i class='far fa-edit' style='font-size:21px'></i></a>
-            <a class="nav-item nav-link" id="account" href="{{url_for('account')}}"><i class='far fa-user-circle' style='font-size:22px'></i></a>
-            <a class="nav-item nav-link" id="logout"  href="{{url_for('logout')}}"><i class='fas fa-user-alt-slash' style='font-size:20px'></i></a>
+                <a class="nav-item nav-link" id="post" href="{{url_for('create_post')}}"><i class='far fa-edit' style='font-size:21px'></i></a>
+                <a class="nav-item nav-link" id="account" href="{{url_for('account')}}"><i class='far fa-user-circle' style='font-size:22px'></i></a>
+                <a class="nav-item nav-link" id="logout"  href="{{url_for('logout')}}"><i class='fas fa-user-alt-slash' style='font-size:20px'></i></a>
             {% else %}
-            <a class="nav-item nav-link" id="register" href="{{url_for('register')}}"><i class='far fa-user-circle' style='font-size:24px'></i></a>
-            <a class="nav-item nav-link" href="{{url_for('login')}}"><i class='fas fa-sign-in-alt' style='font-size:24px'></i></a>
+                <a class="nav-item nav-link" id="register" href="{{url_for('register')}}"><i class='far fa-user-circle' style='font-size:24px'></i></a>
+                <a class="nav-item nav-link" href="{{url_for('login')}}"><i class='fas fa-sign-in-alt' style='font-size:24px'></i></a>
             {% endif %}
+                <a class="nav-item nav-link" id="tag" href="#"><i class='fa fa-hashtag' style='font-size:22px'></i></a>
+                <a class="nav-item nav-link" id="search" href="#" data-toggle="popover"
+                   title="Popover Header" data-content="search"><i class='fa fa-search' style='font-size:22px'></i></a>
+
           <div class="about">
             <a data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:22px"></i></a>
             <a id="feedback" href="#"><i class='far fa-comment' style='font-size:22px'></i></a>
           </div>
       </div>
 
-        <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="project1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    <div class="title" id="about">The Forest of Translations</div>
-                     <img class="image center"  src="static\logo.png" alt="logo">
-                    <div class="modal-body">
-                        <div class="feature">A Translation blog for classical Chinese enthusiasts.</div>
-                            <div>Made by <a class="copy-link" href="#">Madeleine Ma</a> | <i class="fa fa-copyright"></i> Copyright {{year}}</div>
 
-                        <a href="#"><i class="fa fa-linkedin-square icon" style="font-size:24px"></i></a>
-                        <a href="https://github.com/mayue3081249"><i class="fa fa-github icon" style="font-size:24px"></i></a>
-                    </div>
+<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="project1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            <div class="title" id="about">The Forest of Translations</div>
+             <img class="image center"  src="/static/logo.png" alt="logo">
+            <div class="modal-body">
+                <div class="feature">A Translation blog for classical Chinese enthusiasts.</div>
+                    <div>Made by <a class="copy-link" href="#">Madeleine Ma</a> | <i class="fa fa-copyright"></i> Copyright {{year}}</div>
+
+                <a href="#"><i class="fa fa-linkedin-square icon" style="font-size:24px"></i></a>
+                <a href="https://github.com/mayue3081249"><i class="fa fa-github icon" style="font-size:24px"></i></a>
             </div>
-          </div>
-        </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -75,5 +98,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
+  </body>
+
+
 </html>

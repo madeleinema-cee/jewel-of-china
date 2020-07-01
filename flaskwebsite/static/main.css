@@ -4,7 +4,7 @@
     --secendory: #003371;
     --third: #9d2933;
     --chinese: "Ma Shan Zheng";
-    --english: "Rubik";
+    --english: "Nunito";
     --title: "La Belle Aurore";
     --sub-title: "Noto Sans";
 }
@@ -12,7 +12,7 @@
 body {
     background-color: var(--bgcolor);
     background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");    color: var(--secendory);
-    font-family: var(--english), sans-serif
+    font-family: var(--english), sans-serif;
 }
 
 
@@ -23,7 +23,7 @@ body {
 
 .site-header {
     background-image: url("../../static/Qiao Zhongchang.jpg");
-    height: 300px;
+    height: 400px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,12 +33,9 @@ body {
 }
 
 .home-section {
-    position: absolute;
-    top: 300px;
-    margin-left: 80px;
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    position: relative;
+    top: 350px;
+    padding-bottom: 40px;
 }
 
 .message {
@@ -223,6 +220,25 @@ img{
     color: var(--secendory);
 }
 
+.article-center {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    position: center;
+}
+
+.post-title {
+    color: var(--primary);
+    font-size: xx-large;
+    padding: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.article {
+    height: 100vh;
+}
+
 .edit-icon {
     color: var(--primary);
     float: right;
@@ -239,6 +255,15 @@ img{
     padding: 5px;
     font-family: var(--english);
 }
+
+.limit {
+
+    overflow: hidden;
+    text-overflow: "---";
+    line-height: 1.5em;        /* fallback */
+    max-height: 6em;
+}
+
 
 .article-img {
     height: 30px;
@@ -297,4 +322,12 @@ img{
 
 .icon:hover {
     color: var(--primary);
+}
+
+
+.tag {
+    font-size: small;
+    text-align: center;
+    color: var(--primary);
+
 }

@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import data_required, length, email, equal_to, ValidationError
-from flaskwebsite.models import User
+from flaskwebsite.models import User, Tag
 
 
 class RegistrationForm(FlaskForm):
@@ -60,6 +60,7 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[data_required()])
     chinese_content = TextAreaField('Chinese Text', validators=[data_required()])
     content = TextAreaField('Content', validators=[data_required()])
+    tags = StringField("Tags", validators=[length(min=2, max=30)])
     submit = SubmitField('Post')
 
 

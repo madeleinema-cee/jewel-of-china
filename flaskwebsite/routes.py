@@ -3,7 +3,7 @@ import os
 from PIL import Image
 from flask import render_template, redirect, url_for, flash, request, abort
 from flaskwebsite import app, db, bcrypt, mail
-from flaskwebsite.models import User, Post
+from flaskwebsite.models import User, Post, Tag
 from flaskwebsite.forms import RegistrationForm, LoginForm,\
                                 UpdateAccountForm, PostForm,\
                                 RequestResetPasswordForm, ResetPasswordForm
@@ -96,7 +96,9 @@ def account():
 def create_post():
     form= PostForm()
     if form.validate_on_submit():
-        post = Post(author=current_user, title=form.title.data, chinese_content=form.chinese_content.data, content=form.content.data)
+        post = Post(author=current_user, title=form.title.data,
+                    chinese_content=form.chinese_content.data, content=form.content.data,
+                    tags=form.tags.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -121,6 +123,7 @@ def update_post(post_id):
         post.title = form.title.data
         post.chinese_content = form.chinese_content.data
         post.content = form.content.data
+        post.tags = form.tags.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('post', post_id=post.id))
@@ -128,6 +131,7 @@ def update_post(post_id):
         form.title.data = post.title
         form.chinese_content.data = post.chinese_content
         form.content.data = post.content
+        form.tags.data = post.tags
     return render_template('create_post.html', title='Update Post', form=form, legend="Update Post")
 
 
@@ -151,6 +155,16 @@ def user_posts(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
+
+
+@app.route('/tag/<string:tag>')
+def search_tag(tag):
+    page = request.args.get('page', 1, type=int)
+    tag = Tag.query.filter_by(name=tag).first_or404()
+    posts = Post.query.filter_by(post_tags=tag).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('tag.html', posts=posts)
+
+
 
 
 def send_reset_email(user):
