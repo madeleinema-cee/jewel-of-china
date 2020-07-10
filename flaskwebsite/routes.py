@@ -6,21 +6,44 @@ from flaskwebsite import app, db, bcrypt, mail
 from flaskwebsite.models import User, Post, Tag
 from flaskwebsite.forms import RegistrationForm, LoginForm,\
                                 UpdateAccountForm, PostForm,\
-                                RequestResetPasswordForm, ResetPasswordForm
+                                RequestResetPasswordForm, ResetPasswordForm,\
+                                SearchForm
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
 
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('home.html', posts=posts)
+
+    search_form = SearchForm()
+    print(request.method)
+    if request.method == 'POST':
+        print('POST')
+        if search_form.validate_on_submit():
+            print('success')
+            return redirect(url_for('search', query=search_form.search_text.data))
+    else:
+        print('fail', request.method)
+    return render_template('home.html', posts=posts, search_form=search_form)
+
+
+@app.route('/search/<string:query>', methods=['GET', 'POST'])
+def search(query):
+    search_form = SearchForm()
+    search_results = Post.query.filter_by(title=query).order_by(Post.date_posted.desc())
+    if request.method == 'POST':
+        if search_form.validate_on_submit():
+            print(search_form.search_text.data)
+            return redirect(url_for('search', query=search_form.search_text.data))
+    return render_template('search.html', search_form=search_form, search_results=search_results, query=query)
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    search_form = SearchForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -31,11 +54,12 @@ def register():
         db.session.commit()
         flash(f'Your account has been created!', 'success')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form, search_form=search_form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    search_form = SearchForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -48,7 +72,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check again!', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, search_form=search_form)
 
 
 @app.route('/logout')
@@ -74,6 +98,7 @@ def save_picture(form_picture):
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
+    search_form = SearchForm()
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -88,12 +113,13 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='account', image_file=image_file, form=form)
+    return render_template('account.html', title='account', image_file=image_file, form=form, search_form=search_form)
 
 
 @app.route('/post/new', methods=['GET', 'POST'])
 @login_required
 def create_post():
+    search_form = SearchForm()
     form= PostForm()
     if form.validate_on_submit():
         post = Post(author=current_user, title=form.title.data,
@@ -103,18 +129,20 @@ def create_post():
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_post.html', title='New Post', form=form, legend='New Post')
+    return render_template('create_post.html', title='New Post', form=form, legend='New Post', search_form=search_form)
 
 
 @app.route('/post/<int:post_id>')
 def post(post_id):
+    search_form = SearchForm()
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    return render_template('post.html', title=post.title, post=post, search_form=search_form)
 
 
 @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
+    search_form = SearchForm()
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -132,7 +160,7 @@ def update_post(post_id):
         form.chinese_content.data = post.chinese_content
         form.content.data = post.content
         form.tags.data = post.tags
-    return render_template('create_post.html', title='Update Post', form=form, legend="Update Post")
+    return render_template('create_post.html', title='Update Post', form=form, legend="Update Post", search_form=search_form)
 
 
 @app.route('/post/<int:post_id>/delete', methods=['POST'])
@@ -149,22 +177,24 @@ def delete_post(post_id):
 
 @app.route('/user/<string:username>')
 def user_posts(username):
+    search_form = SearchForm()
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_posts.html', posts=posts, user=user)
+    return render_template('user_posts.html', posts=posts, user=user, search_form=search_form)
 
 
 @app.route('/tag/<tag>')
 def search_tag(tag):
+    search_form = SearchForm()
     page = request.args.get('page', 1, type=int)
     tag = Tag.query.filter_by(name=tag).first_or_404()
     name = tag.name
     posts = tag.post_tags.order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('tag.html', tag_name=name, posts=posts)
+    return render_template('tag.html', tag_name=name, posts=posts, search_form=search_form)
 
 
 
@@ -184,6 +214,7 @@ if you did not make this request, please ignore this email.
 
 @app.route('/reset_password', methods=['GET', 'POST'])
 def request_reset_password():
+    search_form = SearchForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetPasswordForm()
@@ -192,11 +223,12 @@ def request_reset_password():
         send_reset_email(user)
         flash('You requested reset the password! An email has been sent to you.', 'info')
         return redirect(url_for('login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('reset_request.html', title='Reset Password', form=form, search_form=search_form)
 
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
+    search_form = SearchForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
@@ -210,4 +242,4 @@ def reset_token(token):
         db.session.commit()
         flash(f'Your password has been reset! You are now able to log in!', 'success')
         return redirect(url_for('login'))
-    return render_template('reset_token.html', title='Reset Password', form=form)
+    return render_template('reset_token.html', title='Reset Password', form=form, search_form=search_form)

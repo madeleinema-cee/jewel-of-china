@@ -26,12 +26,21 @@
     {% endif %}
   </head>
   <body>
+   <div class="collapse fixed-top search-section" id="search">
+            <form action="" method="POST">
+            {{ search_form.hidden_tag() }}
+            {{search_form.search_text(class="search", placeholder="Post, Tag, Authur...")}}
+            {{search_form.submit(class="btn-sm btn-section")}}
+            </form>
+        </div>
         <nav class="navbar">
-            <div class="nav-brand">
+            <a class="nav-brand" href="{{ url_for('home') }}">
                 <img class="image" src="/static/logo.png" alt="logo">
-                <div class="page-header" href="/">The Forest of Translations</div>
-            </div>
+                <div class="page-header">The Forest of Translations</div>
+            </a>
+
         </nav>
+
         <div role="alert" class="container message fixed-top">
             {% with messages = get_flashed_messages(with_categories=true)%}
                 {% if messages %}
@@ -48,6 +57,7 @@
         </div>
         {% block content %}{% endblock %}
 
+
       <div class="sidenav">
           <a id="home" href="{{url_for('home')}}"><i class="fa fa-home" style="font-size:24px"></i></a>
             {% if current_user.is_authenticated %}
@@ -59,8 +69,7 @@
                 <a class="nav-item nav-link" href="{{url_for('login')}}"><i class='fas fa-sign-in-alt' style='font-size:24px'></i></a>
             {% endif %}
                 <a class="nav-item nav-link" id="tag" href="#"><i class='fa fa-hashtag' style='font-size:22px'></i></a>
-                <a class="nav-item nav-link" id="search" href="#" data-toggle="popover"
-                   title="Popover Header" data-content="search"><i class='fa fa-search' style='font-size:22px'></i></a>
+                <a class="nav-item nav-link" data-toggle="collapse" href="#search"><i class='fa fa-search' style='font-size:22px'></i></a>
 
           <div class="about">
             <a data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:22px"></i></a>

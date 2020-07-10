@@ -79,3 +79,10 @@ class ResetPasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[data_required(), equal_to('password')])
     submit = SubmitField('Reset Password')
+
+
+class SearchForm(FlaskForm):
+    search_text = StringField('Search...', validators=[data_required(), length(min=1, max=30)])
+    submit = SubmitField('Search')
+
+

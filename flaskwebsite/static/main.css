@@ -45,10 +45,22 @@ body {
     width: 30%;
 }
 
+.search {
+    border-radius: 10px;
+    border: 1px solid var(--bgcolor);
+    background-color: var(--bgcolor);
+    color: var(--secendory);
+}
+
+.nav-brand:hover {
+    text-decoration: none;
+}
+
 .image {
     height: 100PX;
     width: 100PX;
     padding: 5px;
+    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (min-width: 701px) {
@@ -329,5 +341,5 @@ img{
     font-size: small;
     text-align: center;
     color: var(--primary);
-
 }
+
