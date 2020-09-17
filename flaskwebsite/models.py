@@ -56,3 +56,10 @@ class Post(db.Model):
 class Tag(db.Model):
     tag_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
+
+
+class Feedback(db.Model):
+    feedback_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100),  nullable=False)
+    date_commented = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    feedback = db.Column(db.String, nullable=False)

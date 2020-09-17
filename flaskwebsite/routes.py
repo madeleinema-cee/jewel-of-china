@@ -1,6 +1,7 @@
 import secrets
 import os
 from PIL import Image
+from hanziconv import HanziConv
 from flask import render_template, redirect, url_for, flash, request, abort
 from flaskwebsite import app, db, bcrypt, mail
 from flaskwebsite.models import User, Post, Tag
@@ -17,28 +18,28 @@ from flask_mail import Message
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    count = Post.query.count()
+    tags = Tag.query.all()
 
     search_form = SearchForm()
-    print(request.method)
     if request.method == 'POST':
-        print('POST')
-        if search_form.validate_on_submit():
-            print('success')
+        if search_form.submit1.data and search_form.validate_on_submit():
             return redirect(url_for('search', query=search_form.search_text.data))
-    else:
-        print('fail', request.method)
-    return render_template('home.html', posts=posts, search_form=search_form)
+
+    return render_template('home.html', posts=posts, tags=tags, search_form=search_form)
 
 
 @app.route('/search/<string:query>', methods=['GET', 'POST'])
 def search(query):
     search_form = SearchForm()
-    search_results = Post.query.filter_by(title=query).order_by(Post.date_posted.desc())
+    posts = Post.query.filter(Post.title.contains(query) | (Post.content.contains(query))).all()
+    for post in posts:
+        print(post)
     if request.method == 'POST':
         if search_form.validate_on_submit():
-            print(search_form.search_text.data)
             return redirect(url_for('search', query=search_form.search_text.data))
-    return render_template('search.html', search_form=search_form, search_results=search_results, query=query)
+
+    return render_template('search.html', search_form=search_form, posts=posts, query=query)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -54,6 +55,7 @@ def register():
         db.session.commit()
         flash(f'Your account has been created!', 'success')
         return redirect(url_for('login'))
+
     return render_template('register.html', title='Register', form=form, search_form=search_form)
 
 
@@ -72,6 +74,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check again!', 'danger')
+
     return render_template('login.html', title='Login', form=form, search_form=search_form)
 
 
@@ -122,8 +125,10 @@ def create_post():
     search_form = SearchForm()
     form= PostForm()
     if form.validate_on_submit():
-        post = Post(author=current_user, title=form.title.data,
-                    chinese_content=form.chinese_content.data, content=form.content.data,
+        chinese = HanziConv.toTraditional(form.chinese_content.data)
+        title = HanziConv.toTraditional(form.title.data)
+        post = Post(author=current_user, title=form.title,
+                    chinese_content=chinese, content=form.content.data,
                     tags=form.tags.data)
         db.session.add(post)
         db.session.commit()
@@ -148,19 +153,20 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.chinese_content = form.chinese_content.data
+        post.title = HanziConv.toTraditional(form.title.data)
+        post.chinese_content = HanziConv.toTraditional(form.chinese_content.data)
         post.content = form.content.data
         post.tags = form.tags.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('post', post_id=post.id))
+        return redirect(url_for('post', post_id=post.post_id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.chinese_content.data = post.chinese_content
         form.content.data = post.content
         form.tags.data = post.tags
-    return render_template('create_post.html', title='Update Post', form=form, legend="Update Post", search_form=search_form)
+    return render_template('create_post.html', title='Update Post', form=form, legend="Update Post",
+                           search_form=search_form)
 
 
 @app.route('/post/<int:post_id>/delete', methods=['POST'])
@@ -178,12 +184,13 @@ def delete_post(post_id):
 @app.route('/user/<string:username>')
 def user_posts(username):
     search_form = SearchForm()
+    tags = Tag.query.all()
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_posts.html', posts=posts, user=user, search_form=search_form)
+    return render_template('user_posts.html', posts=posts, tags=tags, user=user, search_form=search_form)
 
 
 @app.route('/tag/<tag>')
@@ -195,8 +202,6 @@ def search_tag(tag):
     posts = tag.post_tags.order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('tag.html', tag_name=name, posts=posts, search_form=search_form)
-
-
 
 
 def send_reset_email(user):

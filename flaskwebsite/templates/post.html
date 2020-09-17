@@ -5,16 +5,18 @@
     <div class="container">
     <article class="article">
         <div class="media-body">
+            {% if post.author == current_user %}
+                    <a class="edit-icon" href="{{url_for('update_post', post_id=post.post_id)}}"><i class='far fa-edit' style='font-size:16px'></i></a>
+                    <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
+            {% endif %}
             <div class="post-title article-center">{{ post.title }}</div>
+
             <div class="article-metadata">
                 <img class="rounded-circle article-img" src="{{url_for('static', filename='profile_pics/' + post.author.image_file)}}">
                 <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-                <small class="text-muted">{{ post.date_posted.strftime('%b %d, %Y %X')}}</small>
+                <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y %X')}}</small>
 
-                {% if post.author == current_user %}
-                    <a class="edit-icon" href="{{url_for('update_post', post_id=post.post_id)}}"><i class='far fa-edit' style='font-size:16px'></i></a>
-                    <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
-                {% endif %}
+
             <hr>
                 <p class="chinese article-center">{{ post.chinese_content }}</p>
                 <p class="article-content article-center">{{ post.content }}</p>

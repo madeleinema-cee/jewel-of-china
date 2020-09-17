@@ -55,15 +55,6 @@ class UpdateAccountForm(FlaskForm):
         if user:
             raise ValidationError('That email already exists. Please use another one.')
 
-
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[data_required()])
-    chinese_content = TextAreaField('Chinese Text', validators=[data_required()])
-    content = TextAreaField('Content', validators=[data_required()])
-    tags = StringField("Tags", validators=[length(min=2, max=30)])
-    submit = SubmitField('Post')
-
-
 class RequestResetPasswordForm(FlaskForm):
     email = StringField('Email', validators=[data_required(), email()])
     submit = SubmitField('Request Reset Password')
@@ -83,6 +74,53 @@ class ResetPasswordForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     search_text = StringField('Search...', validators=[data_required(), length(min=1, max=30)])
-    submit = SubmitField('Search')
+    submit1 = SubmitField('Search')
+
+
+class TagField(StringField):
+    '''
+    Tag field taken from "Learning Flask Framework" by Matt CopperWaite and Charles Leifer
+    Check out pages 37-42
+    Copperwaite, Matt, and Charles Leifer. 2015. Learning Flask Framework.
+    Packt Publishing. http://www.totalboox.com/book/id-7553921423834771450.
+    '''
+
+    def _value(self):
+        if self.data:
+            return ', '.join([tag.name for tag in self.data])
+        return ''
+
+    def get_tags_from_string(self, tag_string):
+        raw_tags = tag_string.split(',')
+
+        tag_names = [name.strip() for name in raw_tags if name.strip()]
+
+        existing_tags = Tag.query.filter(Tag.name.in_(tag_names))
+
+        new_names = set(tag_names) - set([tag.name for tag in existing_tags])
+
+        new_tags = [Tag(name=name) for name in new_names]
+
+        return list(existing_tags) + new_tags
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = self.get_tags_from_string(valuelist[0])
+        else:
+            self.data = []
+
+
+class PostForm(FlaskForm):
+    title = StringField('Title', validators=[data_required()])
+    chinese_content = TextAreaField('Chinese Text', validators=[data_required()])
+    content = TextAreaField('Content', validators=[data_required()])
+    tags = TagField("Tags", validators=[length(min=1, max=30)])
+    submit = SubmitField('Post')
+
+
+class FeedbackForm(FlaskForm):
+    name = StringField('Name', validators=[data_required(), length(min=2, max=20)])
+    comments = TextAreaField('Comments', validators=[data_required(), length(min=2)])
+    submit2 = SubmitField('Send')
 
 

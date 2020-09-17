@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-
+    <div class="register">
     <div class="container form-section account">
         <form method="post" action="">
             {{form.hidden_tag()}}
@@ -67,5 +67,6 @@
         <small class="text-muted">
             Already Have An Account? <a class="color1" href="{{url_for('login')}}">Login</a>
         </small>
+    </div>
     </div>
 {% endblock %}

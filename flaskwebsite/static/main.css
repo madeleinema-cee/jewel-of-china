@@ -3,7 +3,7 @@
     --primary: #c93756;
     --secendory: #003371;
     --third: #9d2933;
-    --chinese: "Ma Shan Zheng";
+    --chinese: "KaiTi";
     --english: "Nunito";
     --title: "La Belle Aurore";
     --sub-title: "Noto Sans";
@@ -11,7 +11,8 @@
 
 body {
     background-color: var(--bgcolor);
-    background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");    color: var(--secendory);
+    background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
+    color: var(--secendory);
     font-family: var(--english), sans-serif;
 }
 
@@ -25,53 +26,20 @@ a:hover {
 }
 
 .site-header {
-    height: 500px;
     position: absolute;
     top:0;
     width: 100%;
+    height: 304px;
+    background-image: url("lisong.jpg");
+    background-size: auto;
+    z-index: -1;
+    opacity: 90%;
+
 }
-
-.bgimg {
-    position: absolute;
-    height: 80%;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.slides {
-    display: none;
-}
-
-.imgchange {
-    position: absolute;
-    top: 360px;
-    left: 0;
-    margin: auto;
-    width: 90%;
-    text-align: center;
-}
-
-.dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: var(--secendory);
-}
-
-
 
 .home-section {
     position: relative;
-    top: 350px;
+    top: 300px;
     padding-bottom: 40px;
 }
 
@@ -84,9 +52,10 @@ a:hover {
 
 .search {
     border-radius: 10px;
-    border: 1px solid var(--bgcolor);
-    background-color: var(--bgcolor);
-    color: var(--secendory);
+    border: 2px solid var(--primary);
+    background-color: var(--primary);
+    opacity: 70%;
+    color: var(--bgcolor);
 }
 
 .nav-brand:hover {
@@ -104,9 +73,9 @@ a:hover {
     div.page-header {
         color: var(--third);
         font-family: var(--title), sans-serif;
-        padding: 15px 10px;
+        padding: 20px 0 10px 10px;
         display: inline;
-        font-size: 40px;
+        font-size: 50px;
         font-weight: bolder;
     }
 }
@@ -116,7 +85,8 @@ a:hover {
         font-family: var(--title), sans-serif;
         padding: 15px 10px;
         display: inline;
-        font-size: 30px;
+        font-size: 40px;
+        font-weight: bolder;
     }
 }
 
@@ -129,27 +99,28 @@ a:hover {
 }
 
 .sidenav {
-  height: 100%;
-  width: 100px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: -20px;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: var(--secendory);
-  display: block;
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: -20px;
+    overflow-x: hidden;
+    padding-top: 20px;
     opacity: 40%;
 }
 
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: var(--secendory);
+    display: block;
+    opacity: 60%;
+}
+
 .sidenav a:hover {
-  color: var(--secendory);
+    color: var(--secendory);
     opacity: 90%;
 }
 
@@ -163,12 +134,11 @@ a:hover {
     color: var(--secendory);
 }
 
-
-
 .btn-section{
     color: var(--primary);
     border: 1px solid var(--primary);
     border-radius: 10px;
+    opacity: 80%;
 }
 .btn-section:hover{
     color: var(--bgcolor);
@@ -185,12 +155,10 @@ a:hover {
     border-radius: 10px
 }
 
-
 img{
     max-width: 100%;
     height: auto;
 }
-
 
 .form-section{
     background-color: var(--bgcolor);
@@ -201,7 +169,6 @@ img{
     padding: 20px;
     width: 70%;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 @media screen and (min-width: 701px) {
@@ -219,7 +186,6 @@ img{
     }
 }
 
-
 .account-img {
   height: 125px;
   width: 125px;
@@ -232,16 +198,18 @@ img{
 }
 
 .post-section {
-    margin-top: 30px;
     margin-bottom: 30px;
     font-size: larger;
     color: var(--primary);
     font-family: var(--sub-title), sans-serif;
 }
 
-
 .post {
-    margin: 10px;
+    background-color: var(--bgcolor);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
 }
 
 
@@ -297,6 +265,7 @@ img{
 .chinese {
     font-family: var(--chinese);
     font-size: large;
+    font-weight: bold;
     padding: 5px;
 }
 
@@ -306,10 +275,12 @@ img{
 }
 
 .limit {
-
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: "---";
-    line-height: 1.5em;        /* fallback */
+    text-overflow: ellipsis;
+    line-height: 1.5em;
     max-height: 6em;
 }
 
@@ -376,11 +347,55 @@ img{
 
 .tag {
     font-size: small;
-    text-align: center;
     color: var(--primary);
+    margin-right: 20px;
+    margin-left: 10px;
 }
 
+.fixed-top {
+    position: absolute;
+    top: 100px;
+    padding-left: 100px;
+}
 
+.time {
+    float: right
+}
 
+.search-section {
+    position: fixed;
+    z-index: 2;
+    bottom: 210px;
+    right: 80px;
+    border-radius: 17px;
+}
 
+.search-icon{
+    position: fixed;
+    top:255px;
+    right: 35px;
+}
 
+.feedback-icon{
+    position: fixed;
+    bottom: 30px;
+    right: 20px
+}
+
+.search-icon {
+    position: fixed;
+    top: 235px
+}
+.register {
+    height: 100vh;
+}
+
+.tags-section {
+    border: solid 1px var(--primary);
+    border-radius: 15px;
+    margin-top: 10px;
+    background-color: var(--primary);
+    color: var(--bgcolor);
+    opacity: 70%;
+    padding: 5px;
+}
