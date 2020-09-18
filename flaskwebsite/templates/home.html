@@ -6,13 +6,21 @@
 
 <div class="container">
     <div class="home-section row">
-        <div class="col-lg-4 order-lg-last">
-            <h3 class="post-section">Tags</h3>
+        <div class="col-lg-4 mb-5 order-lg-last">
+            <div class="post-section">Tags</div>
             {% for tag in tags %}
                 <a href="{{ url_for('search_tag', tag=tag.name)}}" class="btn tags-section">
                     {{ tag.name }}
                 </a>
             {% endfor %}
+            <hr>
+             <div class="search-section" id="search">
+                <form action="" method="POST">
+                    {{ search_form.hidden_tag() }}
+                    {{search_form.search_text(class="search", placeholder="Post, Tag, Authur...")}}
+                    {{search_form.submit1(class="btn-sm btn-section ml-2")}}
+                </form>
+            </div>
         </div>
         <hr>
         <div class="col-lg-8 order-md-first">
@@ -41,7 +49,7 @@
                 {% endfor %}
             </div>
 
-            <div class="page-number"></div>
+            <div class="page-number">
             {% for page_num in posts.iter_pages() %}
                 {% if page_num %}
                     {% if posts.page == page_num %}
@@ -53,6 +61,7 @@
                 ...
                 {% endif %}
             {% endfor %}
+            </div>
         </div>
     </div>
 </div>

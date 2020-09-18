@@ -22,36 +22,36 @@
     {% endif %}
   </head>
 
+
   <body>
     <nav class="navbar">
-    <a class="nav-brand" href="{{ url_for('home') }}">
-        <img class="image" src="../static/logo.png" alt="logo">
-        <div class="page-header">Jewel of China</div>
-    </a>
+        <a class="nav-brand" href="{{ url_for('home') }}">
+            <img class="image" src="../static/logo.png" alt="logo">
+            <div class="page-header">Jewel of China</div>
+        </a>
 
-    </nav>
-
-    <div role="alert" class="container message fixed-top">
+        <div role="alert">
     {% with messages = get_flashed_messages(with_categories=true)%}
         {% if messages %}
             {% for category, message in messages %}
-            <div class="alert alert-{{category}}">
-             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <div class="alert alert-{{category}} alert-dismissible fade show">
+             <button type="button" class="close ml-3" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+             </button>
                 {{ message }}
             </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
     </div>
+    </nav>
+
     {% block content %}{% endblock %}
 
 
     <div class="sidenav">
       <div class="about">
           <a id="home" href="{{url_for('home')}}"><i class="fa fa-home" style="font-size:24px"></i></a>
-            <a class="nav-item nav-link" data-toggle="collapse" href="#search"><i class='fa fa-search' style='font-size:22px'></i></a>
             {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="post" href="{{url_for('create_post')}}"><i class='far fa-edit' style='font-size:21px'></i></a>
             <a class="nav-item nav-link" id="account" href="{{url_for('account')}}"><i class='far fa-user-circle' style='font-size:22px'></i></a>
@@ -61,16 +61,10 @@
             <a class="nav-item nav-link" href="{{url_for('login')}}"><i class='fas fa-sign-in-alt' style='font-size:24px'></i></a>
         {% endif %}
 
-        <a data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:22px"></i></a>
+            <a data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:22px"></i></a>
       </div>
     </div>
-    <div class="collapse search-section" id="search">
-        <form action="" method="POST">
-            {{ search_form.hidden_tag() }}
-            {{search_form.search_text(class="search", placeholder="Post, Tag, Authur...")}}
-            {{search_form.submit1(class="btn-sm btn-section")}}
-        </form>
-    </div>
+
 
 
 <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="project1" aria-hidden="true">
@@ -83,10 +77,10 @@
          <img class="image center"  src="../static/logo.png" alt="logo">
         <div class="modal-body">
             <div class="feature">A translation blog for classical Chinese enthusiasts.</div>
-                <div>Made by <a class="copy-link" href="#">Madeleine Ma</a> | <i class="fa fa-copyright"></i> Copyright {{year}}</div>
+                <div>Made by <a class="copy-link" href="https://madelienema.com">Madeleine Ma</a> | <i class="fa fa-copyright"></i> Copyright {{year}}</div>
 
             <a href="#"><i class="fa fa-linkedin-square icon" style="font-size:24px"></i></a>
-            <a href="https://madelienema.com"><i class="fa fa-github icon" style="font-size:24px"></i></a>
+            <a href="https://github.com/mayue3081249"><i class="fa fa-github icon" style="font-size:24px"></i></a>
         </div>
     </div>
   </div>

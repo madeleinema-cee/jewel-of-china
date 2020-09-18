@@ -11,7 +11,7 @@
 
 body {
     background-color: var(--bgcolor);
-    background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
+    background-image: url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
     color: var(--secendory);
     font-family: var(--english), sans-serif;
 }
@@ -19,6 +19,7 @@ body {
 a:hover {
     text-decoration: none;
 }
+
 
 .chinese-text{
     font-family: var(--chinese), sans-serif;
@@ -41,21 +42,14 @@ a:hover {
     position: relative;
     top: 300px;
     padding-bottom: 40px;
-}
-
-.message {
-    position: absolute;
-    right: 100px;
-    top: 10px;
-    width: 30%;
+    margin-top: -50px;
 }
 
 .search {
     border-radius: 10px;
-    border: 2px solid var(--primary);
-    background-color: var(--primary);
-    opacity: 70%;
-    color: var(--bgcolor);
+    border: 2px solid var(--bgcolor);
+    background-color: var(--bgcolor);
+    color: var(--primary);
 }
 
 .nav-brand:hover {
@@ -74,7 +68,7 @@ a:hover {
         color: var(--third);
         font-family: var(--title), sans-serif;
         padding: 20px 0 10px 10px;
-        display: inline;
+        display: inline-block;
         font-size: 50px;
         font-weight: bolder;
     }
@@ -84,7 +78,7 @@ a:hover {
         color: var(--third);
         font-family: var(--title), sans-serif;
         padding: 15px 10px;
-        display: inline;
+        display: inline-block;
         font-size: 40px;
         font-weight: bolder;
     }
@@ -198,10 +192,16 @@ img{
 }
 
 .post-section {
-    margin-bottom: 30px;
-    font-size: larger;
+    font-size: x-large;
     color: var(--primary);
     font-family: var(--sub-title), sans-serif;
+}
+
+.tag-title {
+    font-size: x-large;
+    color: var(--primary);
+    font-family: var(--sub-title), sans-serif;
+    display: inline-block;
 }
 
 .post {
@@ -352,40 +352,17 @@ img{
     margin-left: 10px;
 }
 
-.fixed-top {
-    position: absolute;
-    top: 100px;
-    padding-left: 100px;
-}
 
 .time {
     float: right
 }
 
 .search-section {
-    position: fixed;
-    z-index: 2;
-    bottom: 210px;
-    right: 80px;
+
     border-radius: 17px;
 }
 
-.search-icon{
-    position: fixed;
-    top:255px;
-    right: 35px;
-}
 
-.feedback-icon{
-    position: fixed;
-    bottom: 30px;
-    right: 20px
-}
-
-.search-icon {
-    position: fixed;
-    top: 235px
-}
 .register {
     height: 100vh;
 }

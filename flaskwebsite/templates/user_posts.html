@@ -23,8 +23,8 @@
                                 <small class="text-muted">{{ post.date_posted.strftime('%b %d, %Y %X')}}</small>
                             </div>
                                 <a class="article-title" href="{{url_for('post', post_id=post.post_id)}}">{{ post.title }}</a>
-                                <p class="chinese">{{ post.chinese_content }}</p>
-                                <p class="article-content">{{ post.content }}</p>
+                                <p class="chinese limit">{{ post.chinese_content }}</p>
+                                <p class="article-content limit">{{ post.content }}</p>
                             <hr>
                             <div class="row">
                                 {% for tag in post.tags %}

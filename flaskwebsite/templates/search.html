@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="container">
-    <h3><div class="post-section">Search for: {{ query }}</div></h3>
-    <div class="post-field">
+        <div class="col-lg-8 mb-5">
+            <div class="post-section">Search for: {{ query }}</div>
+            {% for tag in tags %}
+                <div class="tag-title">Tag: </div>
+                <a href="{{ url_for('search_tag', tag=tag.name)}}" class="btn tags-section">{{ tag.name }}</a>
+            {% endfor %}
+            <div class="post-field">
                 {% for post in posts %}
                         <div class="media post">
                             <img class="rounded-circle article-img" src="{{url_for('static',
@@ -25,6 +30,7 @@
                         </div>
                 {% endfor %}
             </div>
+        </div>
     </div>
 
 {% endblock %}
