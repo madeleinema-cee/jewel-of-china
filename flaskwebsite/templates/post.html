@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-
-
     <div class="container">
     <article class="article">
         <div class="media-body">
@@ -14,7 +12,7 @@
             <div class="article-metadata">
                 <img class="rounded-circle article-img" src="{{url_for('static', filename='profile_pics/' + post.author.image_file)}}">
                 <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-                <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y %X')}}</small>
+                <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
 
 
             <hr>
@@ -23,13 +21,12 @@
             </div>
         </div>
     <hr>
-        <div class="row">
             {% for tag in post.tags %}
                 <a href="{{ url_for('search_tag', tag=tag.name)}}" class="col-sm-1 tag">
                 {{ tag.name }}
+                </a>
             {% endfor %}
-            </a>
-        </div>
+
     </article>
 
 

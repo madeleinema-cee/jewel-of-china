@@ -33,6 +33,7 @@ def home():
 def search(query):
 
     search_form = SearchForm()
+    query = query.lower()
     posts = Post.query.filter(Post.title.contains(query) | (Post.content.contains(query))| (Post.chinese_content.contains(query))).all()
 
     tags = Tag.query.filter_by(name=query).all()

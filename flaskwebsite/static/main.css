@@ -1,9 +1,8 @@
 :root {
-    --bgcolor: #FCEFE8;
-    --primary: #c93756;
-    --secendory: #003371;
-    --third: #9d2933;
-    --chinese: "KaiTi";
+    --bgcolor: #fffffc;
+    --primary: #9d2933;
+    --secendory: #50616d;
+    --third: #463f3a;
     --english: "Nunito";
     --title: "La Belle Aurore";
     --sub-title: "Noto Sans";
@@ -14,16 +13,12 @@ body {
     background-image: url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
     color: var(--secendory);
     font-family: var(--english), sans-serif;
+    min-height: 100vh;
+    padding-bottom: 20px;
 }
 
 a:hover {
     text-decoration: none;
-}
-
-
-.chinese-text{
-    font-family: var(--chinese), sans-serif;
-    font-size: x-large;
 }
 
 .site-header {
@@ -49,7 +44,7 @@ a:hover {
     border-radius: 10px;
     border: 2px solid var(--bgcolor);
     background-color: var(--bgcolor);
-    color: var(--primary);
+    color: var(--third);
 }
 
 .nav-brand:hover {
@@ -57,31 +52,43 @@ a:hover {
 }
 
 .image {
-    height: 100PX;
-    width: 100PX;
-    padding: 5px;
-    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    max-width: 100px;
+    height: auto;
+    width: auto\9;
+}
+
+.center{
+    margin: auto;
+    width: 90%;
 }
 
 @media screen and (min-width: 701px) {
     div.page-header {
-        color: var(--third);
+        color: var(--primary);
         font-family: var(--title), sans-serif;
         padding: 20px 0 10px 10px;
         display: inline-block;
         font-size: 50px;
         font-weight: bolder;
     }
+
 }
+
 @media screen and (max-width: 700px) {
     div.page-header {
-        color: var(--third);
+        color: var(--primary);
         font-family: var(--title), sans-serif;
-        padding: 15px 10px;
         display: inline-block;
         font-size: 40px;
         font-weight: bolder;
     }
+    div.home-section {
+        position: relative;
+        top: 250px;
+        padding-bottom: 40px;
+        margin-top: -50px;
+}
+
 }
 
 .color1{
@@ -169,7 +176,22 @@ img{
     div.account {
         width: 50%;
     }
+}
 
+.article-center {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    position: center;
+}
+
+.post {
+    background-color: var(--bgcolor);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 700px) {
@@ -178,12 +200,29 @@ img{
         margin-left: 20px;
         margin-right: 20px;
     }
+    .article-center {
+        margin: auto;
+        width: 95%;
+        padding: 10px;
+        position: center;
+    }
+
+    div.post {
+        background-color: var(--bgcolor);
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 20px 10px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+
 }
 
+
+
 .account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
+  height: 100px;
+  width: 100px;
   margin-bottom: 16px;
 }
 
@@ -193,29 +232,22 @@ img{
 
 .post-section {
     font-size: x-large;
-    color: var(--primary);
+    color: var(--third);
     font-family: var(--sub-title), sans-serif;
 }
 
 .tag-title {
     font-size: x-large;
-    color: var(--primary);
+    color: var(--third);
     font-family: var(--sub-title), sans-serif;
     display: inline-block;
 }
 
-.post {
-    background-color: var(--bgcolor);
-    border-radius: 10px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    padding: 20px;
-}
+
 
 
 .article-author {
     color: var(--secendory);
-    margin-left: 20px;
     margin-right: 30px;
     padding-bottom: 50px;
 }
@@ -237,18 +269,10 @@ img{
     color: var(--secendory);
 }
 
-.article-center {
-    margin: auto;
-    width: 70%;
-    padding: 10px;
-    position: center;
-}
 
 .post-title {
     color: var(--primary);
     font-size: xx-large;
-    padding: 5px;
-    margin-top: 20px;
     text-align: center;
 }
 
@@ -263,9 +287,8 @@ img{
 }
 
 .chinese {
-    font-family: var(--chinese);
-    font-size: large;
-    font-weight: bold;
+    font-family: KaiTi, monospace;
+    font-size: larger;
     padding: 5px;
 }
 
@@ -300,7 +323,7 @@ img{
 
 .title {
     font-family: var(--title);
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: bolder;
     margin: auto;
     padding-right:20px;
@@ -309,11 +332,7 @@ img{
     padding-bottom: 20px;
 }
 
-.center {
-    margin: auto;
-    width: 30%;
-    height: 30%;
-}
+
 
 .modal-body {
     margin: auto;
@@ -326,7 +345,7 @@ img{
 }
 
 .copy-link {
-    color: var(--secendory)
+    color: var(--primary)
 }
 
 .close {
@@ -337,11 +356,11 @@ img{
 
 .icon {
     padding: 10px;
-    color: var(--secendory)
+    color: var(--primary)
 }
 
 .icon:hover {
-    color: var(--primary);
+    opacity: 70%;
 }
 
 
@@ -368,11 +387,14 @@ img{
 }
 
 .tags-section {
-    border: solid 1px var(--primary);
     border-radius: 15px;
     margin-top: 10px;
-    background-color: var(--primary);
+    background-color: rgba(157, 41, 51, 0.7);
     color: var(--bgcolor);
-    opacity: 70%;
     padding: 5px;
+}
+
+.tags-section:hover{
+    color: var(--bgcolor);
+    opacity: 80%;
 }

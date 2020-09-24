@@ -24,27 +24,27 @@
 
 
   <body>
-    <nav class="navbar">
-        <a class="nav-brand" href="{{ url_for('home') }}">
+    <div class="navbar">
+        <a class="header" href="{{ url_for('home') }}">
             <img class="image" src="../static/logo.png" alt="logo">
             <div class="page-header">Jewel of China</div>
         </a>
 
-        <div role="alert">
-    {% with messages = get_flashed_messages(with_categories=true)%}
-        {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{category}} alert-dismissible fade show">
-             <button type="button" class="close ml-3" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-             </button>
-                {{ message }}
-            </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+        <div role="alert" class="alert-dismissible fade show">
+            {% with messages = get_flashed_messages(with_categories=true)%}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}} alert-dismissible fade show">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                     </button>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
     </div>
-    </nav>
 
     {% block content %}{% endblock %}
 
@@ -61,7 +61,7 @@
             <a class="nav-item nav-link" href="{{url_for('login')}}"><i class='fas fa-sign-in-alt' style='font-size:24px'></i></a>
         {% endif %}
 
-            <a data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:22px"></i></a>
+            <a class="nav-item nav-link" data-toggle="modal" data-target="#about" href="#"><i class="fa fa-info-circle" style="font-size:24px"></i></a>
       </div>
     </div>
 
