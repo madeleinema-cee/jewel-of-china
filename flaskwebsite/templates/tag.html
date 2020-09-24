@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <div class="col-lg-8 mb-5">
+    <div class="mb-5">
         <div class="post-section">Tag: {{ tag_name }} ({{posts.total}})</div>
             <div class="post-field">
             {% for post in posts.items %}
@@ -10,8 +10,8 @@
                      filename='profile_pics/' + post.author.image_file)}}">
                     <div class="media-body">
                         <div class="article-metadata">
-                            <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-                            <small class="text-muted">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
+                            <a class="article-author ml-2" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
+                            <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
                         </div>
                             <a class="article-title" href="{{url_for('post', post_id=post.post_id)}}">{{ post.title }}</a>
                             <p class="chinese limit">{{ post.chinese_content }}</p>

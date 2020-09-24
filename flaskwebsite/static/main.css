@@ -52,7 +52,7 @@ a:hover {
 }
 
 .image {
-    max-width: 100px;
+    max-width: 80px;
     height: auto;
     width: auto\9;
 }
@@ -78,8 +78,8 @@ a:hover {
     div.page-header {
         color: var(--primary);
         font-family: var(--title), sans-serif;
-        display: inline-block;
-        font-size: 40px;
+        display: block;
+        font-size: 20px;
         font-weight: bolder;
     }
     div.home-section {
@@ -87,8 +87,7 @@ a:hover {
         top: 250px;
         padding-bottom: 40px;
         margin-top: -50px;
-}
-
+    }
 }
 
 .color1{
@@ -141,6 +140,11 @@ a:hover {
     border-radius: 10px;
     opacity: 80%;
 }
+
+.form-control {
+    opacity: 80%;
+}
+
 .btn-section:hover{
     color: var(--bgcolor);
     background-color: var(--primary);
@@ -156,10 +160,7 @@ a:hover {
     border-radius: 10px
 }
 
-img{
-    max-width: 100%;
-    height: auto;
-}
+
 
 .form-section{
     background-color: var(--bgcolor);
@@ -215,7 +216,6 @@ img{
         padding: 20px 10px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
-
 }
 
 
@@ -282,8 +282,6 @@ img{
 
 .edit-icon {
     color: var(--primary);
-    float: right;
-    padding: 5px;
 }
 
 .chinese {
@@ -377,8 +375,16 @@ img{
 }
 
 .search-section {
-
     border-radius: 17px;
+}
+
+.search-section-big {
+    position: relative;
+    top: 50%;
+    margin: auto;
+    width: 80%;
+
+
 }
 
 
