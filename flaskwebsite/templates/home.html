@@ -2,8 +2,15 @@
 {% block content %}
 
     <div class="site-header">
+        <div class="description"><i>The Eight Drinking Celestial Beings</i> By Tang Yin </div>
     </div>
-
+        <div class="search-section" id="search">
+            <form action="" method="POST">
+                {{ search_form.hidden_tag() }}
+                {{search_form.search_text(class="form-control search mt-2", placeholder="Post, Tag, Authur...")}}
+                {{search_form.submit1(class="btn btn-section mt-2")}}
+            </form>
+        </div>
 <div class="container">
     <div class="home-section row">
         <div class="col-lg-4 mb-5 order-lg-last">
@@ -14,13 +21,6 @@
                 </a>
             {% endfor %}
             <hr>
-             <div class="search-section" id="search">
-                <form action="" method="POST">
-                    {{ search_form.hidden_tag() }}
-                    {{search_form.search_text(class="search", placeholder="Post, Tag, Authur...")}}
-                    {{search_form.submit1(class="btn-sm btn-section ml-2")}}
-                </form>
-            </div>
         </div>
         <hr>
         <div class="col-lg-8 order-md-first">
