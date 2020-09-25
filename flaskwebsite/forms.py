@@ -121,9 +121,7 @@ class PostForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-class FeedbackForm(FlaskForm):
+class CommentForm(FlaskForm):
     name = StringField('Name', validators=[data_required(), length(min=2, max=20)])
     comments = TextAreaField('Comments', validators=[data_required(), length(min=2)])
     submit2 = SubmitField('Send')
-
-

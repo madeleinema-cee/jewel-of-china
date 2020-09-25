@@ -4,11 +4,11 @@ from PIL import Image
 from hanziconv import HanziConv
 from flask import render_template, redirect, url_for, flash, request, abort
 from flaskwebsite import app, db, bcrypt, mail
-from flaskwebsite.models import User, Post, Tag
+from flaskwebsite.models import User, Post, Tag, Comment
 from flaskwebsite.forms import RegistrationForm, LoginForm,\
                                 UpdateAccountForm, PostForm,\
                                 RequestResetPasswordForm, ResetPasswordForm,\
-                                SearchForm
+                                SearchForm, CommentForm
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
@@ -139,10 +139,17 @@ def create_post():
     return render_template('create_post.html', title='New Post', form=form, legend='New Post')
 
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    form = CommentForm()
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    if form.validate_on_submit():
+        comment = Comment(name=form.name.data, comment=form.comments.data, post_id=post_id)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('post', post_id=post_id))
+    return render_template('post.html', title=post.title, post=post, form=form, comments=comments)
 
 
 @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])

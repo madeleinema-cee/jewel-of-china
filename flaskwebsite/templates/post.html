@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="container">
-    <article class="article mb-5">
+    <article class="article mb-2">
         <div class="media-body">
 
             <div class="post-title article-center">{{ post.title }}</div>
@@ -9,11 +9,17 @@
             <div class="article-metadata">
                 <img class="rounded-circle article-img" src="{{url_for('static', filename='profile_pics/' + post.author.image_file)}}">
                 <a class="article-author" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-            {% if post.author == current_user %}
+
+                <small class="text-muted time mr-3">
+                <div class="delete-section">
+                    {% if post.author == current_user %}
+                                            <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
+
                     <a class="edit-icon" href="{{url_for('update_post', post_id=post.post_id)}}"><i class='far fa-edit' style='font-size:16px'></i></a>
-                    <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
-                {% endif %}
-                <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
+                    {% endif %}
+                </div>
+                {{ post.date_posted.strftime('%b %d, %Y')}}
+                </small>
 
 
             <hr>
@@ -21,7 +27,7 @@
                 <p class="article-content article-center">{{ post.content }}</p>
             </div>
         </div>
-    <hr>
+        <hr>
             {% for tag in post.tags %}
                 <a href="{{ url_for('search_tag', tag=tag.name)}}" class="col-sm-1 tag">
                 {{ tag.name }}
@@ -29,6 +35,27 @@
             {% endfor %}
 
     </article>
+        <br>
+    <br>
+    {% if comments %}
+        <h3 class="color1">Comments({{ comments | length }})</h3>
+    {% endif %}
+    {% for comment in comments %}
+        <div class="comment-name"> {{ comment.name }}</div>
+        <small class="text-muted time">{{ comment.date_commented.strftime('%b %d, %Y') }}</small>
+        <div class="comment">{{ comment.comment }}</div>
+    <hr>
+    {% endfor %}
+
+    <h3 class="color1">Leave a Comment</h3>
+    <form method="post" action="" class="mb-5">
+        {{form.hidden_tag()}}
+        {{ form.name.label(class="form-control-label") }}
+        {{ form.name(class="form-control form-control-lg") }}
+        {{ form.comments.label(class="form-control-label") }}
+        {{ form.comments(class="form-control form-control-lg") }}
+        {{ form.submit2(class="btn btn-section mt-2") }}
+    </form>
 
 
     <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="deletepost" aria-hidden="true">

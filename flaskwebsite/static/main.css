@@ -172,10 +172,23 @@ a:hover {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.article-title {
+    padding: 5px;
+    color: var(--primary);
+    font-size: x-large;
+}
+
+.chinese {
+    font-family: KaiTi, monospace;
+    font-size: large;
+    padding: 5px;
+}
+
 @media screen and (min-width: 701px) {
     div.account {
         width: 50%;
     }
+
 }
 
 .article-center {
@@ -215,9 +228,12 @@ a:hover {
         padding: 20px 10px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
+
+    div.article-title {
+        padding: 5px;
+        color: var(--secendory);
+    }
 }
-
-
 
 .account-img {
   height: 100px;
@@ -242,9 +258,6 @@ a:hover {
     display: inline-block;
 }
 
-
-
-
 .article-author {
     color: var(--secendory);
     margin-right: 30px;
@@ -258,16 +271,9 @@ a:hover {
     padding-bottom: 10px;
 }
 
-.article-title {
-    padding: 5px;
-    color: var(--primary);
-    font-size: x-large;
-}
-
 .article-title:hover {
     color: var(--secendory);
 }
-
 
 .post-title {
     color: var(--primary);
@@ -275,19 +281,10 @@ a:hover {
     text-align: center;
 }
 
-.article {
-    min-height: 100vh;
-}
-
 .edit-icon {
     color: var(--primary);
 }
 
-.chinese {
-    font-family: KaiTi, monospace;
-    font-size: larger;
-    padding: 5px;
-}
 
 .article-content {
     padding: 5px;
@@ -328,8 +325,6 @@ a:hover {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-
 
 .modal-body {
     margin: auto;
@@ -384,7 +379,6 @@ a:hover {
     height: 100vh;
 }
 
-
 .tags-section {
     border-radius: 15px;
     margin-top: 10px;
@@ -407,4 +401,21 @@ a:hover {
     padding-right: 5px;
 }
 
+.message {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 
+.delete-section{
+    display: block;
+}
+
+.comment-name{
+    color: #006d77;
+    font-weight: bold;
+}
+
+.comment {
+    font-size: larger;
+}

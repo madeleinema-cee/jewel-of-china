@@ -17,12 +17,11 @@
                             <p class="chinese limit">{{ post.chinese_content }}</p>
                             <p class="article-content limit">{{ post.content }}</p>
                         <hr>
-                                {% for tag in post.tags %}
-                                    <a href="{{ url_for('search_tag', tag=tag.name)}}" class="col-sm-1 tag">
-                                    {{ tag.name }}
-                                    </a>
-                                {% endfor %}
-
+                            {% for tag in post.tags %}
+                                <a href="{{ url_for('search_tag', tag=tag.name)}}" class="col-sm-1 tag">
+                                {{ tag.name }}
+                                </a>
+                            {% endfor %}
                     </div>
                 </article>
             {% endfor %}
