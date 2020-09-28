@@ -9,7 +9,7 @@ from flaskwebsite.forms import RegistrationForm, LoginForm,\
                                 UpdateAccountForm, PostForm,\
                                 RequestResetPasswordForm, ResetPasswordForm,\
                                 SearchForm, CommentForm
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required, AnonymousUserMixin
 from flask_mail import Message
 
 
@@ -141,13 +141,21 @@ def create_post():
 
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post(post_id):
-    post = Post.query.get_or_404(post_id)
+
     form = CommentForm()
-    comments = Comment.query.filter_by(post_id=post_id).all()
+    post = Post.query.get_or_404(post_id)
+    comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.date_commented.desc()).all()
+
     if form.validate_on_submit():
-        comment = Comment(name=form.name.data, comment=form.comments.data, post_id=post_id)
+        if current_user.is_active:
+            form.name.data = current_user.username
+            print(form.name.data)
+            comment = Comment(name=form.name.data, comment=form.comments.data, post_id=post_id)
+        else:
+            comment = Comment(name=form.name.data, comment=form.comments.data, post_id=post_id)
         db.session.add(comment)
         db.session.commit()
+        flash('Your comment has been submitted', 'success')
         return redirect(url_for('post', post_id=post_id))
     return render_template('post.html', title=post.title, post=post, form=form, comments=comments)
 
@@ -179,9 +187,13 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    for comment in comments:
+        db.session.delete(comment)
     if post.author != current_user:
         abort(403)
     db.session.delete(post)
+
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('home'))

@@ -10,8 +10,8 @@
 
 body {
     background-color: var(--bgcolor);
-    background-image: url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
-    color: var(--secendory);
+    color: var(--third);
+    background-image: url("https://www.transparenttextures.com/patterns/cream-dust.png");
     font-family: var(--english), sans-serif;
     min-height: 100vh;
     padding-bottom: 20px;
@@ -88,6 +88,7 @@ a:hover {
         top: 250px;
         padding-bottom: 40px;
         margin-top: -100px;
+
     }
 }
 
@@ -169,7 +170,7 @@ a:hover {
     margin-top: 20px;
     padding: 20px;
     width: 70%;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
 }
 
 .article-title {
@@ -180,7 +181,6 @@ a:hover {
 
 .chinese {
     font-family: KaiTi, monospace;
-    font-size: large;
     padding: 5px;
 }
 
@@ -199,12 +199,12 @@ a:hover {
 }
 
 .post {
-    background-color: var(--bgcolor);
     border-radius: 5px;
+    border: solid 1px lightgrey;
+    background-color: var(--bgcolor);
     margin-bottom: 20px;
     margin-top: 20px;
     padding: 20px 10px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 700px) {
@@ -221,8 +221,9 @@ a:hover {
     }
 
     div.post {
-        background-color: var(--bgcolor);
         border-radius: 5px;
+        border: solid 1px lightgrey;
+        background-color: var(--bgcolor);
         margin-bottom: 20px;
         margin-top: 20px;
         padding: 20px 10px;
@@ -298,7 +299,7 @@ a:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5em;
-    max-height: 6em;
+    max-height: 4.5em;
 }
 
 

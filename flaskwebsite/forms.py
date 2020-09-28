@@ -115,13 +115,14 @@ class TagField(StringField):
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[data_required()])
-    chinese_content = TextAreaField('Chinese Text', validators=[data_required()])
-    content = TextAreaField('Content', validators=[data_required()])
+    chinese_content = TextAreaField('Chinese Text')
+    content = TextAreaField('Content', validators=[length(min=2)])
     tags = TagField("Tags", validators=[length(min=1, max=30)])
     submit = SubmitField('Post')
 
 
 class CommentForm(FlaskForm):
-    name = StringField('Name', validators=[data_required(), length(min=2, max=20)])
-    comments = TextAreaField('Comments', validators=[data_required(), length(min=2)])
+    name = StringField('Name', validators=[length(max=20)])
+    comments = TextAreaField('Comments', validators=[length(min=2)])
     submit2 = SubmitField('Send')
+

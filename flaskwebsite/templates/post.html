@@ -13,7 +13,7 @@
                 <small class="text-muted time mr-3">
                 <div class="delete-section">
                     {% if post.author == current_user %}
-                                            <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
+                        <a class="edit-icon" href="#" data-toggle="modal" data-target="#deletepost"><i class="fa fa-remove" style="font-size:16px"></i></a>
 
                     <a class="edit-icon" href="{{url_for('update_post', post_id=post.post_id)}}"><i class='far fa-edit' style='font-size:16px'></i></a>
                     {% endif %}
@@ -23,8 +23,8 @@
 
 
             <hr>
-                <p class="chinese article-center">{{ post.chinese_content }}</p>
-                <p class="article-content article-center">{{ post.content }}</p>
+                <div class="chinese article-center">{{ post.chinese_content|safe }}</div>
+                <div class="article-content article-center"><div>{{ post.content|safe}}</div></div>
             </div>
         </div>
         <hr>
@@ -50,11 +50,20 @@
     <h3 class="color1">Leave a Comment</h3>
     <form method="post" action="" class="mb-5">
         {{form.hidden_tag()}}
-        {{ form.name.label(class="form-control-label") }}
-        {{ form.name(class="form-control form-control-lg") }}
-        {{ form.comments.label(class="form-control-label") }}
-        {{ form.comments(class="form-control form-control-lg") }}
-        {{ form.submit2(class="btn btn-section mt-2") }}
+        {% if not current_user.is_active %}
+            {{ form.name.label(class="form-control-label") }}
+            {{ form.name(class="form-control form-control-lg") }}
+        {% else %}
+            <img class="rounded-circle article-img" src="{{url_for('static',
+                         filename='profile_pics/' + current_user.image_file)}}">
+            {{ current_user.username }}<br><br>
+
+        {% endif %}
+            {{ form.comments.label(class="form-control-label") }}
+            {{ form.comments(class="form-control form-control-lg") }}
+            {{ form.submit2(class="btn btn-section mt-2") }}
+
+
     </form>
 
 
