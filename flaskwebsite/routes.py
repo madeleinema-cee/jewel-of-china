@@ -18,8 +18,12 @@ from flask_mail import Message
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    count = Post.query.count()
     tags = Tag.query.all()
+    for tag in tags:
+        tag_posts = tag.post_tags.all()
+        if not tag_posts:
+            db.session.delete(tag)
+            db.session.commit()
 
     search_form = SearchForm()
     if request.method == 'POST':
@@ -33,13 +37,12 @@ def home():
 def search(query):
 
     search_form = SearchForm()
-    query = query.lower()
+    query = query.lower().replace('%20', ' ')
     posts = Post.query.filter(Post.title.contains(query) | (Post.content.contains(query))| (Post.chinese_content.contains(query))).all()
 
     tags = Tag.query.filter_by(name=query).all()
     if tags:
         return render_template('search.html', search_form=search_form, posts=posts, query=query, tags=tags)
-
 
     if request.method == 'POST':
         if search_form.validate_on_submit():
@@ -213,10 +216,12 @@ def user_posts(username):
 @app.route('/tag/<tag>')
 def search_tag(tag):
     page = request.args.get('page', 1, type=int)
+    tag = tag.replace('%20', ' ')
     tag = Tag.query.filter_by(name=tag).first_or_404()
     name = tag.name
     posts = tag.post_tags.order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
+
     return render_template('tag.html', tag_name=name, posts=posts)
 
 

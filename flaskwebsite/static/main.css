@@ -143,6 +143,18 @@ a:hover {
     opacity: 80%;
 }
 
+.btn-section1{
+    background-color: var(--primary);
+    color: var(--bgcolor);
+    border-radius: 10px;
+    opacity: 80%;
+}
+
+.btn-section1:hover{
+    opacity: 70%;
+    color: var(--bgcolor);
+}
+
 .form-control {
     opacity: 80%;
 }
@@ -170,13 +182,14 @@ a:hover {
     margin-top: 20px;
     padding: 20px;
     width: 70%;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .article-title {
     padding: 5px;
     color: var(--primary);
     font-size: x-large;
+    display: block;
 }
 
 .chinese {
@@ -227,7 +240,6 @@ a:hover {
         margin-bottom: 20px;
         margin-top: 20px;
         padding: 20px 10px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
 
     div.article-title {
@@ -419,4 +431,18 @@ a:hover {
 
 .comment {
     font-size: larger;
+}
+
+.no-result{
+    font-family: var(--title);
+    font-size: xx-large;
+    margin: auto;
+    width: 99%;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+img {
+width:100%;
+height:100%;
 }

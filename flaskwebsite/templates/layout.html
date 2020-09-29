@@ -14,20 +14,28 @@
       <script src='https://kit.fontawesome.com/a076d05399.js'></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-        <script src="https://cdn.tiny.cloud/1/h4o60lckdmwhr3qp2abducjfdpr7aqoqy81pv67evgnifp76/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-          <script type="text/javascript">
-            tinymce.init({
-              selector: 'textarea',
-               menubar: false,
-               forced_root_block : false,
-               statusbar: false,
+      <script src="https://cdn.tiny.cloud/1/h4o60lckdmwhr3qp2abducjfdpr7aqoqy81pv67evgnifp76/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+      <script type="text/javascript">
+        tinymce.init({
+        selector: 'textarea',
+        menubar: false,
+        forced_root_block : false,
+        statusbar: false,
+        plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste imagetools wordcount'
+        ],
+        toolbar: 'styleselect |' +
+        ' bold italic backcolor| alignleft aligncenter alignright alignjustify |' +
+        ' bullist numlist outdent indent | link image',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+         image_class_list: [
+            {title: 'Responsive', value: 'img-responsive'}
+        ],
+        })
+      </script>
 
-                  toolbar: 'insertfile undo redo | styleselect | bold italic backcolor| alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                });
-
-          </script>
-</head>
 
     {% if title %}
         <title>Jewel of China - {{title}}</title>

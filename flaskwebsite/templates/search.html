@@ -8,12 +8,13 @@
                 <a href="{{ url_for('search_tag', tag=tag.name)}}" class="btn tags-section">{{ tag.name }}</a>
             {% endfor %}
             <div class="post-field">
+            {% if posts %}
                 {% for post in posts %}
                     <div class="media post">
-                        <img class="rounded-circle article-img" src="{{url_for('static',
-                         filename='profile_pics/' + post.author.image_file)}}">
                         <div class="media-body">
                             <div class="article-metadata">
+                                <img class="rounded-circle article-img" src="{{url_for('static',
+                        filename='profile_pics/' + post.author.image_file)}}">
                                 <a class="article-author ml-2" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
                                 <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
                             </div>
@@ -29,6 +30,9 @@
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                <div class="no-result"> No Post Found</div>
+            {% endif %}
             </div>
         </div>
     </div>
