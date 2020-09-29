@@ -2,7 +2,7 @@
 {% block content %}
     <div class="container">
         <div class="mb-5">
-            <div class="post-section">Search for: {{ query }}</div>
+            <div class="post-section">Search for: {{ query }}({{ posts|length }})</div>
             {% for tag in tags %}
                 <div class="tag-title">Tag: </div>
                 <a href="{{ url_for('search_tag', tag=tag.name)}}" class="btn tags-section">{{ tag.name }}</a>
@@ -17,6 +17,9 @@
                         filename='profile_pics/' + post.author.image_file)}}">
                                 <a class="article-author ml-2" href="{{url_for('user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
                                 <small class="text-muted time">{{ post.date_posted.strftime('%b %d, %Y')}}</small>
+                                <div >
+                                <small class="comment-icon">{{ post.total_comments}}  <i class='far fa-comment-alt'></i></small>
+                                </div>
                             </div>
                         <a class="article-title" href="{{url_for('post', post_id=post.post_id)}}">{{ post.title }}</a>
                             <p class="chinese limit"> {{ post.chinese_content |safe}}</p>

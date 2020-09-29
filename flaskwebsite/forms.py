@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
@@ -118,11 +118,13 @@ class PostForm(FlaskForm):
     chinese_content = TextAreaField('Chinese Text')
     content = TextAreaField('Content', validators=[length(min=2)])
     tags = TagField("Tags", validators=[length(min=1, max=30)])
+    recap = RecaptchaField()
     submit = SubmitField('Post')
 
 
 class CommentForm(FlaskForm):
     name = StringField('Name', validators=[length(max=20)])
     comments = TextAreaField('Comments', validators=[length(min=2)])
+    recap = RecaptchaField()
     submit2 = SubmitField('Send')
 

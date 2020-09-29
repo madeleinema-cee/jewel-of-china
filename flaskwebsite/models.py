@@ -47,6 +47,7 @@ class Post(db.Model):
     chinese_content = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    total_comments = db.Column(db.Integer, nullable=True)
     tags = db.relationship('Tag', secondary=tags, backref=db.backref('post_tags', lazy='dynamic'))
     comments = db.relationship('Comment', backref='comments', lazy=True)
 

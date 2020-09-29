@@ -41,7 +41,15 @@
         <h3 class="color1">Comments({{ comments | length }})</h3>
     {% endif %}
     {% for comment in comments %}
-        <div class="comment-name"> {{ comment.name }}</div>
+        {% for user in users %}
+            {% if user.username == comment.name %}
+                <a href="{{url_for('user_posts', username=user.username)}}">
+                <img class="rounded-circle article-img" src="{{url_for('static', filename='profile_pics/' + user.image_file)}}">
+                </a>
+            {% endif %}
+        {% endfor %}
+            <div class="comment-name"> {{ comment.name }}</div>
+
         <small class="text-muted time">{{ comment.date_commented.strftime('%b %d, %Y') }}</small>
         <div class="comment">{{ comment.comment }}</div>
     <hr>
@@ -61,6 +69,7 @@
         {% endif %}
             {{ form.comments.label(class="form-control-label") }}
             {{ form.comments(class="form-control form-control-lg") }}
+            <div style="transform:scale(0.7); transform-origin:0 0">{{ form.recap }}</div>
             {{ form.submit2(class="btn btn-section mt-2") }}
 
 

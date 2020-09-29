@@ -146,8 +146,11 @@ def create_post():
 def post(post_id):
 
     form = CommentForm()
+    users = User.query.all()
     post = Post.query.get_or_404(post_id)
     comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.date_commented.desc()).all()
+    post.total_comments = len(comments)
+    db.session.commit()
 
     if form.validate_on_submit():
         if current_user.is_active:
@@ -160,7 +163,7 @@ def post(post_id):
         db.session.commit()
         flash('Your comment has been submitted', 'success')
         return redirect(url_for('post', post_id=post_id))
-    return render_template('post.html', title=post.title, post=post, form=form, comments=comments)
+    return render_template('post.html', title=post.title, post=post, form=form, comments=comments, users=users)
 
 
 @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
