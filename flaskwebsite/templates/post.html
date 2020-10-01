@@ -51,7 +51,7 @@
             <div class="comment-name"> {{ comment.name }}</div>
 
         <small class="text-muted time">{{ comment.date_commented.strftime('%b %d, %Y') }}</small>
-        <div class="comment">{{ comment.comment }}</div>
+        <div class="comment">{{ comment.comment|safe }}</div>
     <hr>
     {% endfor %}
 
@@ -69,12 +69,10 @@
         {% endif %}
             {{ form.comments.label(class="form-control-label") }}
             {{ form.comments(class="form-control form-control-lg") }}
+            <br>
             <div style="transform:scale(0.7); transform-origin:0 0">{{ form.recap }}</div>
             {{ form.submit2(class="btn btn-section mt-2") }}
-
-
     </form>
-
 
     <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="deletepost" aria-hidden="true">
       <div class="modal-dialog" role="document">
